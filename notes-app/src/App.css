@@ -84,3 +84,20 @@ textarea, input {
   background-color: rgb(0, 128, 49);
   cursor: pointer;
 }
+
+.notes-edit-btn {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.notes-edit-btn button {
+  flex: 1;
+}
+
+.notes-edit-btn > .notes-btn-cancel {
+  background-color: rgb(209, 39, 39);
+}
+
+.notes-edit-btn > .notes-btn-cancel:hover {
+  background-color: rgb(145, 27, 27);
+}
