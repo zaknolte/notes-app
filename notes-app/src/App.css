@@ -1,0 +1,86 @@
+body {
+  margin: 20px;
+  background-color: lightgrey;
+}
+
+.notes-container {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .notes-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+  }
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  );
+  grid-auto-rows: minmax(250px, auto);
+  gap: 20px;
+}
+
+.notes-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(32, 32, 37);
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(208, 237, 252);
+  box-shadow: 5px 5px rgb(16, 34, 49);
+  cursor: pointer;
+}
+
+/* .notes-item:hover {
+  background-color: rgb(150, 192, 212);
+} */
+
+.notes-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.notes-header button {
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+h2 {
+  margin: 0;
+}
+
+.notes-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+textarea, input {
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.notes-form button {
+  border-radius: 50px;
+  background-color: rgb(83, 192, 101);
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+.notes-form button:hover {
+  background-color: rgb(0, 128, 49);
+  cursor: pointer;
+}
