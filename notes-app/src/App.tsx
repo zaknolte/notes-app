@@ -35,6 +35,7 @@ const App = () => {
   const [content, setContent] = useState("");
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
 
+  // ADD NEW NOTE
   const handleCreateNote = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -49,12 +50,14 @@ const App = () => {
     setContent("");
   };
 
+  // SELECT A NOTE TO EDIT
   const handleSelectNote = (note:Note) => {
     setSelectedNote(note);
     setTitle(note.title);
     setContent(note.content);
   };
 
+  // SAVE EDITS TO NOTE
   const handleUpdateNote = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -76,10 +79,28 @@ const App = () => {
     setSelectedNote(null);
   };
 
+  // CANCEL NOTE EDIT
   const handleCancel = () => {
     setTitle("");
     setContent("");
     setSelectedNote(null);
+  }
+
+  // DELETE NOTE
+  const handleDeleteNote = (event: React.MouseEvent, noteId: number) => {
+    // delete 'x' is inside of note - make sure to stop the calling of handleUpdateNote
+    event.stopPropagation();
+
+    let remainingNotes = notes.filter((note) => note.id != noteId)
+
+    setNotes(remainingNotes);
+
+    // Reset properties if you are deleting note that is currently selected
+    if(selectedNote && noteId === selectedNote.id){
+      setTitle("");
+      setContent("");
+      setSelectedNote(null);
+    };
   }
 
   return(
@@ -112,7 +133,7 @@ const App = () => {
         {notes.map((note) => (
           <div className='notes-item' onClick={() => handleSelectNote(note)}>
             <div className='notes-header'>
-              <button>x</button>
+              <button onClick={(e) => handleDeleteNote(e, note.id)}>x</button>
             </div>
             <h2>{note.title}</h2>
             <p>{note.content}</p>
